@@ -4,13 +4,13 @@
 #
 # QMB 6315: Python for Business Analytics
 #
-# Name:
+# Name: Estefan Duran
 #
-# Date:
+# Date: 04/08/2025
 #
 ##################################################
 #
-# Sample Script for Assignment 1:
+# Sample Script for Assignment 1: Python
 # Function Definitions
 #
 ##################################################
@@ -28,19 +28,22 @@ def variance(x):
     that result in the answers given.
     
     >>> variance([101, 103, 94, 102, 100])
-    10.0
+    12.5
     >>> variance([99,101,99,101,99,101])
-    1.0
-    >>> variance([])
+    1.2
+    >>> variance([4,4,4,4])
     0.0
     
     """
     
-    n = 7 # Modify this line.
-    x_bar = 8 # Modify this line.
+    n = len(x) # Modify this line.
+    x_bar = sum(x)/n # Modify this line.
     
-    var = 9 # Modify this line.
-    
+    var = 0 # Modify this line.
+    for i in range(0, n):
+        var = var + (x[i] - x_bar)**2
+        
+    var = var/(n-1)
     return var
 
 
@@ -57,22 +60,26 @@ def covariance(y, x):
     
     >>> covariance([99,101,99,101,99,101], \
                    [99,101,99,101,99,101])
-    1.0
-    >>> covariance([], [])
-    -2.0
-    >>> covariance([], \
-                   [])
+    1.2
+    >>> covariance([99,101,99,101,99,101], \
+                   [98,102,98,102,98,102])
+    2.4
+    >>> covariance([23, 23, 23, 23], \
+                   [5, 7, 43, 700])
     0.0
     
     """
     
-    n = 7 # Modify this line.
-    x_bar = 8 # Modify this line.
-    y_bar = 8 # Modify this line.
+    n = len(x) # Modify this line.
+    x_bar = sum(x)/n # Modify this line.
+    y_bar = sum(y)/n # Modify this line.
     
-    covar = 9 # Modify this line.
-    
-    return covar
+    var = 0 # Modify this line.
+    for i in range(0, n):
+        var = var + (x[i] - x_bar)*(y[i] - y_bar)
+        
+    var = var/(n-1)   
+    return var
 
 
 
@@ -90,20 +97,20 @@ def ols_slope(y, x):
     The examples are given below but you need to fill in the answers.
     
     >>> ols_slope([2, 2, -2, -2], [-1, -1, 1, 1])
-    
+    -2.0
     >>> ols_slope([102, 106, 88, 104, 100], \
                   [101, 103, 94, 102, 100])
-    
+    2.0
     >>> ols_slope([99,101,99,101,99,101], \
                   [99,101,99,101,99,101])
-    
+    1.0
     
     """
     
-    covar = 7 # Modify this line.
-    var = 8 # Modify this line.
+    covar = covariance(y, x) # Modify this line.
+    var = variance(x) # Modify this line.
     
-    slope = 9 # Modify this line.
+    slope = covar/var # Modify this line.
     
     return slope
 
@@ -122,21 +129,22 @@ def ols_intercept(y, x, beta_1_hat):
     The examples are given below but you need to fill in the answers.
     
     >>> ols_intercept([2, 2, -2, -2], [-1, -1, 1, 1], -2.0)
-    
+    0.0
     >>> ols_intercept([102, 106, 88, 104, 100], \
                   [101, 103, 94, 102, 100], 2.0)
-    
+    -100
     >>> ols_intercept([99,101,99,101,99,101], \
                   [99,101,99,101,99,101], 1.0)
-    
+    0.0
     
     """
     
-    n = 7 # Modify this line.
-    x_bar = 8 # Modify this line.
-    y_bar = 9 # Modify this line.
+    n = len(x) # Modify this line.
+    x_bar = sum(x)/n # Modify this line.
+    y_bar = sum(y)/n # Modify this line.
+  
     
-    intercept = 10 # Modify this line.
+    intercept = y_bar - beta_1_hat*x_bar # Modify this line.
     return intercept
     
 
@@ -161,8 +169,11 @@ def ssr(y, x, beta_0, beta_1):
 
     """
     
-    ssr = 7 # Modify this line.
-    ssr = 8 # Modify this line.
+    ssr = 0
+    for i in range(len(y)):
+        y_hat = beta_0 + beta_1 * x[i]
+        residual = y[i] - y_hat
+        ssr += residual ** 2
     
     return ssr
 
