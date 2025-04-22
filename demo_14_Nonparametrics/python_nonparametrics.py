@@ -2,7 +2,7 @@
 """
 ##################################################
 #
-# QMB 3311: Python for Business Analytics
+# QMB 6315: Python for Business Analytics
 #
 # Data Analysis with Pandas: Nonparametric Methods
 #
@@ -12,7 +12,7 @@
 # College of Business Administration
 # University of Central Florida
 #
-# March 27, 2021
+# April 21, 2025
 # 
 # python_nonparametrics gives examples of "regression" models
 #   by considering a number of different model specifications.
@@ -66,12 +66,22 @@ import matplotlib.pyplot as plt  # To plot regression results
 
 # Find out the current directory.
 os.getcwd()
+
+# Get the path where you saved this script.
+# This only works when you run the entire script (with the green "Play" button or F5 key).
+print(os.path.dirname(os.path.realpath(__file__)))
+# It might be comverted to lower case, but it gives you an idea of the text of the path. 
+# You could copy it directly or type it yourself, using your spelling conventions. 
+
 # Change to a new directory.
-git_path = 'C:\\Users\\le279259\\OneDrive - University of Central Florida\\Documents\\GitHub\\QMB3311S22\\'
-os.chdir(git_path + 'demo_21_nonparametrics')
+
+# You could set it directly from the location of this file
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
+
 # Check that the change was successful.
 os.getcwd()
-
+# I got lower case output, even though my folders have some upper case letters.
+# But anyway, it works.
 
 
 ##################################################
