@@ -153,6 +153,7 @@ plt.savefig('Reg_Example_1.pdf')
 
 # Plot the target variable with the predictions.
 plt.scatter(Y_pred_1, Y)
+plt.show()
 # Doesn't look very good.
 
 # Let's look at some summary statistics.
