@@ -2,7 +2,7 @@
 """
 ##################################################
 #
-# QMB 3311: Python for Business Analytics
+# QMB 6315: Python for Business Analytics
 #
 # Linear Regression with the sklearn Module
 #
@@ -12,7 +12,7 @@
 # College of Business
 # University of Central Florida
 #
-# January 20, 2021
+# April 21, 2025
 #
 # This script outlies one approach to linear regression in python.
 # It uses a sample dataset housing_data.csv with the following variables:
@@ -49,10 +49,22 @@ from sklearn.metrics import mean_squared_error, r2_score # For model performance
 
 # Find out the current directory.
 os.getcwd()
+
+# Get the path where you saved this script.
+# This only works when you run the entire script (with the green "Play" button or F5 key).
+print(os.path.dirname(os.path.realpath(__file__)))
+# It might be comverted to lower case, but it gives you an idea of the text of the path. 
+# You could copy it directly or type it yourself, using your spelling conventions. 
+
 # Change to a new directory.
-os.chdir('C:\\Users\\le279259\\OneDrive - University of Central Florida\\Documents\\GitHub\\QMB3311S22\\demo_09_Modules_for_Regression')
+
+# You could set it directly from the location of this file
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
+
 # Check that the change was successful.
 os.getcwd()
+# I got lower case output, even though my folders have some upper case letters.
+# But anyway, it works.
 
 
 

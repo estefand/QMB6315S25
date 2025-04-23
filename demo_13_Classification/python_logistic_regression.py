@@ -2,7 +2,7 @@
 """
 ##################################################
 #
-# QMB 3311: Python for Business Analytics
+# QMB 6315: Python for Business Analytics
 #
 # Data Analysis with Pandas: Logistic Regression
 #
@@ -12,7 +12,7 @@
 # College of Business Administration
 # University of Central Florida
 #
-# March 21, 2021
+# April 21, 2025
 #
 # This script outlies a few approaches to logistic regression in python.
 # It uses a sample dataset credit_data.csv with the following variables:
@@ -59,11 +59,22 @@ sns.set(style="whitegrid", color_codes=True)
 
 # Find out the current directory.
 os.getcwd()
+
+# Get the path where you saved this script.
+# This only works when you run the entire script (with the green "Play" button or F5 key).
+print(os.path.dirname(os.path.realpath(__file__)))
+# It might be comverted to lower case, but it gives you an idea of the text of the path. 
+# You could copy it directly or type it yourself, using your spelling conventions. 
+
 # Change to a new directory.
-git_path = 'C:\\Users\\le279259\\OneDrive - University of Central Florida\\Documents\\GitHub\\QMB3311S22\\'
-os.chdir(git_path + 'demo_19_Classification')
+
+# You could set it directly from the location of this file
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
+
 # Check that the change was successful.
 os.getcwd()
+# I got lower case output, even though my folders have some upper case letters.
+# But anyway, it works.
 
 
 
@@ -214,7 +225,7 @@ from sklearn.metrics import roc_curve
 logit_roc_auc = roc_auc_score(y, logit_model_fit_sk.predict_proba(X)[:,1])
 fpr, tpr, thresholds = roc_curve(y, logit_model_fit_sk.predict_proba(X)[:,1])
 
-# Plot the ROC curve.
+# Plot the ROC curve and save in a pdf image.
 plt.figure()
 plt.plot(fpr, tpr, label='Logistic Regression (area = %0.2f)' % logit_roc_auc)
 plt.plot([0, 1], [0, 1],'r--')
@@ -227,6 +238,23 @@ plt.legend(loc="lower right")
 plt.savefig('Logit_ROC.pdf')
 plt.show()
 
+
+
+# Plot another ROC curve in png format.
+# Although pdf images are higher quality.
+# images in png format will display on GitHub. 
+plt.figure()
+plt.plot(fpr, tpr, label='Logistic Regression (area = %0.2f)' % logit_roc_auc)
+plt.plot([0, 1], [0, 1],'r--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver Operating Characteristic')
+plt.legend(loc="lower right")
+plt.savefig('Logit_ROC.png')
+plt.show()
+# The only difference is the extension in the file name.
 
 
 ##################################################
